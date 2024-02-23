@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="output.css">
+
+</head>
+
+<body class="bg-white ">
+    <div class="bg-[#dce3eb]">
+        <h1 class=" w-full text-lg font-semibold pt-5 flex justify-center items-center  text-[#55bba1]">Calculator</h1>
+        <div class="pt-[68px]">
+            <input type="text" readonly id="display"
+                class=" bg-[#dce3eb] outline-none w-full text-4xl font-bold mt-5 text-right pr-2">
+        </div>
+        <div class="w-full bg-white p-2">
+            <div class="flex  justify-evenly ">
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md text-red-500"
+                    value="c" onclick="clearDisplay()">C</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md"
+                    onclick="backspace()">
+                    <img src="./icons/backspace.svg" alt="">
+                </span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer text-[#55bba1] rounded-md"
+                    value="%" onclick="appendToDisplay('%')">%</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer text-[#55bba1] rounded-md"
+                    value="/" onclick="appendToDisplay('/')">/</span>
+            </div>
+            <div class="flex  justify-evenly ">
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="7"
+                    onclick="appendToDisplay(7)">7</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="8"
+                    onclick="appendToDisplay(8)">8</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="9"
+                    onclick="appendToDisplay(9)">9</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer text-[#55bba1] rounded-md"
+                    value="x" onclick="appendToDisplay('*')">x</span>
+            </div>
+            <div class="flex justify-evenly ">
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="4"
+                    onclick="appendToDisplay(4)">4</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="5"
+                    onclick="appendToDisplay(5)">5</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="6"
+                    onclick="appendToDisplay(6)">6</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer text-[#55bba1] rounded-md"
+                    value="-" onclick="appendToDisplay('-')">-</span>
+            </div>
+            <div class="flex justify-evenly ">
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="1"
+                    onclick="appendToDisplay(1)">1</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="2"
+                    onclick="appendToDisplay(2)">2</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="3"
+                    onclick="appendToDisplay(3)">3</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer text-[#55bba1] rounded-md"
+                    value="+" onclick="appendToDisplay('+')">+</span>
+            </div>
+            <div class="flex justify-evenly ">
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="00"
+                    onclick="appendToDisplay('00')">00</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="00"
+                    onclick="appendToDisplay(0)">0</span>
+                <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md" value="."
+                    onclick="appendToDisplay('.')">.</span>
+                <span
+                    class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer text-white bg-[#55bba1] rounded-md"
+                    value="=" onclick="calculate()">=</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    document.addEventListener('keydown', function (event) {
+        const key = event.key;
+        const keyCode = event.keyCode;
+        if (key === 'Enter' || keyCode === 13) {
+            calculate();
+        }
+        else if (!isNaN(key) || ['+', '-', '*', '/', '.', '%', 'Enter'].includes(key)) {
+            appendToDisplay(key);
+        } else if (key === 'Backspace') {
+            backspace();
+        } else if (key === 'c' || key === 'C') {
+            clearDisplay();
+        }
+    });
+    function appendToDisplay(value) {
+        document.getElementById('display').value += value;
+        if (value === -1) {
+            document.getElementById('display').value -= value;
+        }
+    }
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+    function calculate() {
+        let display = document.getElementById('display').value;
+        let result = eval(display);
+        document.getElementById('display').value = result;
+    }
+    function backspace() {
+        let displayValue = document.getElementById('display').value;
+        document.getElementById('display').value = displayValue.slice(0, -1);
+    }
+</script>
