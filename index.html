@@ -24,7 +24,7 @@
                     value="c" onclick="clearDisplay()">C</span>
                 <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer rounded-md"
                     onclick="backspace()">
-                    <img src="./icons/backspace.svg" alt="">
+                    <img src="./images/backspace.svg" alt="">
                 </span>
                 <span class="px-[32px] py-5 font-medium hover:shadow-md cursor-pointer text-[#55bba1] rounded-md"
                     value="%" onclick="appendToDisplay('%')">%</span>
@@ -79,7 +79,7 @@
 </html>
 
 <script>
-    let cleat = false;
+    let clear = false;
     document.addEventListener('keydown', function (event) {
         const key = event.key;
         const keyCode = event.keyCode;

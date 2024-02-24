@@ -14,11 +14,13 @@ app.on('window-all-closed', function () {
     }
 })
 
+
+
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 355,
         height: 580,
-        icon: path.join(__dirname, 'icons', 'backspace.svg'), // Change 'cal.svg' to 'cal.png' or 'cal.ico'
+        icon: path.join(__dirname, 'images', 'icon.png'),
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
@@ -39,3 +41,4 @@ app.on('ready', () => {
     })
 
 })
+
